@@ -1,6 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+    font-family: iranyekanregular;
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("../public/fonts/iranyekan/iranyekan.eot");
+    src: url("../public/fonts/iranyekan/iranyekan.eot?#iefix") format("embedded-opentype"), /* IE6-8 */
+    url("../public/fonts/iranyekan/iranyekan.woff2") format("woff2"), /* FF39+,Chrome36+, Opera24+*/
+    url("../public/fonts/iranyekan/iranyekan.woff") format("woff"), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url("../public/fonts/iranyekan/iranyekan.ttf") format("truetype");
+}
+
+html {
+    font-family: iranyekanregular !important;
+    height: 100%;
+}
+
+body {
+    direction: rtl;
+    min-height: 100% !important;
+    padding: 0;
+    margin: 0;
+    font-family: iranyekanregular, sans-serif !important;
+}
 body{
     direction: rtl;
 }
