@@ -54,9 +54,7 @@ const Home = () => {
                 console.log(data);
                 navigate(QrViewRoute, { state: { qrCodeString: data_base64 } });
                 break;
-                case "configuration":
-                    navigate(QrViewRoute, { state: { qrCodeString: qrBase64 } });
-                    break;
+
             default:
                 navigate(QrViewRoute, { state: { qrCodeString: qrBase64 } });
 
@@ -191,9 +189,6 @@ const Home = () => {
 
                 </div>
             </div>
-            {/* <p dir="ltr">
-                {qrBase64}
-            </p> */}
         </>
     );
 }
