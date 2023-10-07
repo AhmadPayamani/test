@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { QrViewRoute } from "../routes";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 
@@ -8,7 +9,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const defualtData = {
-        h: 'gfwss://my.yazd.ir',
+        h: 'wss://my.yazd.ir',
         u: '/ws/qr_device/',
         a: 'fava.yazd',
         p: '443',
@@ -36,7 +37,7 @@ const Home = () => {
     };
 
     const genarateQrCode = (type) => {
-        console.log({ type });
+        // console.log({ type });
         switch (type) {
             case "configuration":
                 navigate(QrViewRoute, { state: { qrCodeString: qrBase64 } });
@@ -45,13 +46,13 @@ const Home = () => {
             case "SHOWCONNECTDEBUG":
             case "SHOWDEBUG":
             case "UPDATEURL":
-                let data = { ...formData,h: type };
+                let data = { ...formData, h: type };
                 setFormData(data);
                 let data_string = JSON.stringify(data);
-                localStorage.setItem("defaultDataLS", data_string);
+                // localStorage.setItem("defaultDataLS", data_string);
                 let data_base64 = btoa(data_string);
                 setQrBase64(data_base64)
-                console.log(data);
+                // console.log(data);
                 navigate(QrViewRoute, { state: { qrCodeString: data_base64 } });
                 break;
 
@@ -65,9 +66,12 @@ const Home = () => {
 
     return (
         <>
+            <Helmet>
+                <title>diana | QR Code Generator</title>
+            </Helmet>
             <div className="flex items-center justify-center pt-10" >
 
-                <div className="mx-auto w-full max-w-[550px]">
+                <div className="mx-auto w-full max-w-[550px] px-1">
 
                     <div className="mb-5">
                         <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="h">

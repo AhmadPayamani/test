@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @font-face {
     font-family: iranyekanregular;
     font-style: normal;
@@ -21,12 +22,7 @@ html {
 body {
     direction: rtl;
     min-height: 100% !important;
-    padding: 0;
-    margin: 0;
     font-family: iranyekanregular, sans-serif !important;
-}
-body{
-    direction: rtl;
 }
 input{
     direction: ltr;
