@@ -1,5 +1,6 @@
+import React from 'react';
 import { useEffect, useState } from "react";
-import { QrViewRoute } from "../routes";
+import { NetworkRoute, QrViewRoute } from "../routes";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -41,6 +42,9 @@ const Home = () => {
         switch (type) {
             case "configuration":
                 navigate(QrViewRoute, { state: { qrCodeString: qrBase64 } });
+                break;
+            case "network":
+                navigate(NetworkRoute);
                 break;
             case "SHOWINFO":
             case "SHOWCONNECTDEBUG":
@@ -160,8 +164,14 @@ const Home = () => {
                     </div>
                     <div>
                         <button
-                            onClick={() => genarateQrCode("configuration")}
+                            onClick={() => genarateQrCode("network")}
                             className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none w-full"
+                        >
+                            تنظیمات شبکه
+                        </button>
+                        <button
+                            onClick={() => genarateQrCode("configuration")}
+                            className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none w-full  mt-2"
                         >
                             ساخت QR پیکربندی
                         </button>

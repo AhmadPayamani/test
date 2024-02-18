@@ -1,3 +1,4 @@
+import React from 'react';
 import QRCodeSVG from 'qrcode.react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HomeRoute } from '../routes';
