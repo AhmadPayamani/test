@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import { NetworkRoute, QrViewRoute } from "../routes";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Select from 'react-select';
 
-
+const options = [
+    { value: 1, label: 'Front Door' },
+    { value: 2, label: 'Back Door' },
+];
 
 const Home = () => {
     const navigate = useNavigate();
@@ -16,11 +20,14 @@ const Home = () => {
         p: '443',
         t: '234usdfsr0=',
         d: '54848945465',
+        x: 1
     };
 
     const defaultDataLS = localStorage.getItem('defaultDataLS');
     const [formData, setFormData] = useState(defaultDataLS ? JSON.parse(defaultDataLS) : defualtData);
+
     const [qrBase64, setQrBase64] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(1);
 
     useEffect(() => {
         let data_string = JSON.stringify(formData);
@@ -67,7 +74,21 @@ const Home = () => {
         }
 
     }
+    const handleChangeSelect = (name, selectedOption) => {
+        setSelectedOption(selectedOption);
+        let data = { ...formData, [name]: selectedOption.value };
+        // console.log(`Option selected:`, { name,selectedOption })
+        setFormData(data);
+        let data_string = JSON.stringify(data);
+        localStorage.setItem("defaultDataLS", data_string);
+        setQrBase64(btoa(data_string))
 
+    };
+    useEffect(() => {
+        // console.log({formData});
+        setSelectedOption(options[(formData.x) - 1])
+
+    }, []);
     return (
         <>
             <Helmet>
@@ -158,14 +179,30 @@ const Home = () => {
                             value={formData.d}
                             onChange={handleInputChange}
                             placeholder="device id"
-
                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                    </div>
+                    <div className="mb-5" dir='ltr'>
+                        <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="x">
+                            Door
+                        </label>
+                        <Select
+                            id='x'
+                            value={selectedOption}
+                            onChange={(e) => handleChangeSelect('x', e)}
+                            options={options}
                         />
                     </div>
                     <div>
                         <button
+                            onClick={() => genarateQrCode("SHOWINFO")}
+                            className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none w-full "
+                        >
+                            ساخت QR نمایش اطلاعات دستگاه
+                        </button>
+                        <button
                             onClick={() => genarateQrCode("network")}
-                            className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none w-full"
+                            className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none w-full mt-2"
                         >
                             تنظیمات شبکه
                         </button>
@@ -174,12 +211,6 @@ const Home = () => {
                             className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none w-full  mt-2"
                         >
                             ساخت QR پیکربندی
-                        </button>
-                        <button
-                            onClick={() => genarateQrCode("SHOWINFO")}
-                            className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none w-full mt-2"
-                        >
-                            ساخت QR نمایش اطلاعات دستگاه
                         </button>
                         <button
                             onClick={() => genarateQrCode("UPDATEURL")}
