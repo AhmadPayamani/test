@@ -6,14 +6,32 @@ import { Helmet } from "react-helmet";
 
 const ConsoleDriverConfig = () => {
     const navigate = useNavigate();
-
+    let defaultData = {
+        action : "config",
+        data:{
+            console_mac: null,
+            console_token: null
+        }
+    }
     const defaultDataDriverConsoleConfig = localStorage.getItem('defaultDataDriverConsoleConfig');
-    const [formData, setFormData] = useState(defaultDataDriverConsoleConfig ? JSON.parse(defaultDataDriverConsoleConfig) : []);
+    const [formData, setFormData] = useState(defaultDataDriverConsoleConfig ? JSON.parse(defaultDataDriverConsoleConfig) : defaultData);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        let data = { ...formData, [name]: value };
+        let data = { ...formData};
 
+        switch (name) {
+            case 'console_mac':
+                data.data.console_mac = value;
+                break
+            case 'console_token':
+                data.data.console_token = value;
+                break
+            default :
+                break
+
+        }
+       // console.log(data);
         setFormData(data);
         let data_string = JSON.stringify(data);
         localStorage.setItem("defaultDataDriverConsoleConfig", data_string);
@@ -25,9 +43,9 @@ const ConsoleDriverConfig = () => {
                 navigate(HomeRoute);
                 break;
             case "DriverConsoleConfig":
-                let data = { ...formData, h: type };
+                let data = { ...formData };
+                //console.log(data);
                 setFormData(data);
-                console.log(data)
                 let data_string = JSON.stringify(data);
                 let data_base64 = btoa(data_string);
                 navigate(QrViewRoute, { state: { qrCodeString: data_base64,qrName:"تنظیمات کنسول راننده QR" } });
@@ -59,10 +77,10 @@ const ConsoleDriverConfig = () => {
                             </label>
                             <input
                                 type="text"
-                                name="mac"
+                                name="console_mac"
                                 id="mac"
                                 placeholder="912"
-                                value={formData.console_mac}
+                                value={formData?.data?.console_mac}
                                 onChange={handleInputChange}
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
@@ -73,9 +91,9 @@ const ConsoleDriverConfig = () => {
                             </label>
                             <input
                                 type="text"
-                                name="token"
+                                name="console_token"
                                 id="token"
-                                value={formData.console_token}
+                                value={formData?.data?.console_token}
                                 onChange={handleInputChange}
                                 placeholder="gAAAgrdgrdgdrgrdgdr"
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"

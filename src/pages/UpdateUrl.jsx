@@ -22,7 +22,7 @@ const UpdateUrl = () => {
     };
 
     const genarateQrCode = (type) => {
-        console.log({ type });
+        //console.log({ type });
         switch (type) {
             case "back":
                 navigate(HomeRoute);

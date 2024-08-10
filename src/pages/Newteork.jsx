@@ -22,7 +22,7 @@ const Network = () => {
     };
 
     const genarateQrCode = (type) => {
-        console.log({ type });
+        //console.log({ type });
         switch (type) {
             case "back":
                 navigate(HomeRoute);
@@ -30,7 +30,7 @@ const Network = () => {
             case "network":
                 let data = { ...formData, h: type };
                 setFormData(data);
-                console.log(data)
+                //console.log(data)
                 let data_string = JSON.stringify(data);
                 let data_base64 = btoa(data_string);
                 navigate(QrViewRoute, { state: { qrCodeString: data_base64,qrName:"تنظیمات شبکه QR" } });

@@ -38,7 +38,7 @@ const QrReaderSetting = () => {
         localStorage.setItem("defaultQrReader", data_string);
     };
     const genarateQrCode = (type) => {
-        console.log({type});
+        //console.log({type});
         switch (type) {
             case "back":
                 navigate(HomeRoute);
@@ -46,7 +46,7 @@ const QrReaderSetting = () => {
             case "configuration":
                 let data = {...formData, h: type};
                 setFormData(data);
-                console.log(data)
+                //console.log(data)
                 let data_string = JSON.stringify(data);
                 let data_base64 = btoa(data_string);
                 navigate(QrViewRoute, {state: {qrCodeString: data_base64, qrName: "تنظیمات کاهنده QR"}});
