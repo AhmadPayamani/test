@@ -1,5 +1,5 @@
 import React from 'react';
-import {NetworkRoute, QrReaderSettingRoute, QrViewRoute, UpdateUrlRoute} from "../routes";
+import {ConsoleDriverConfigRoute, NetworkRoute, QrReaderSettingRoute, QrViewRoute, UpdateUrlRoute} from "../routes";
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import '../assets/styles/app.css';
@@ -18,7 +18,7 @@ const Home = () => {
                 navigate(NetworkRoute);
                 break;
             case "DriverConsoleConfig":
-                navigate(NetworkRoute);
+                navigate(ConsoleDriverConfigRoute);
                 break;
             case "SHOWINFO": //ok
                 data = {
@@ -63,7 +63,7 @@ const Home = () => {
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("network")}>
                     <span>تنظیمات شبکه</span>
-                    <span>Network Setting</span>
+                    <span  className={`mt-2`}>Network Setting</span>
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("configuration")}>
                     <span>تنظیمات کاهنده</span>

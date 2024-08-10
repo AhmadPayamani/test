@@ -41,7 +41,7 @@ const QrView = () => {
             ctx.font = "12px Arial Bold"; // Set the font size and style
             ctx.fillStyle = "black"; // Set the text color
             const xPosition = 25;
-            const yPosition = qrSize + 10;
+            const yPosition = qrSize + 20;
             ctx.fillText(text, xPosition, yPosition);
             if (description) {
                 ctx.font = "16px Arial Bold"; // Set the font size and style
@@ -49,7 +49,7 @@ const QrView = () => {
                 const lineHeight = 20; // Set the line height
 
                 let line = '';
-                let yPositionDes = qrSize + 30; // Initial Y position below the QR code
+                let yPositionDes = qrSize + 40; // Initial Y position below the QR code
 
                 for (let i = 0; i < description.length; i++) {
                     const testLine = line + description[i];
