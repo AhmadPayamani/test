@@ -44,10 +44,9 @@ const QrReaderSetting = () => {
                 navigate(HomeRoute);
                 break;
             case "configuration":
-                let data = {...formData, h: type};
-                setFormData(data);
+                setFormData(formData);
                 //console.log(data)
-                let data_string = JSON.stringify(data);
+                let data_string = JSON.stringify(formData);
                 let data_base64 = btoa(data_string);
                 navigate(QrViewRoute, {state: {qrCodeString: data_base64, qrName: "تنظیمات کاهنده QR"}});
                 break;
