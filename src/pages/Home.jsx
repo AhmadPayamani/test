@@ -1,5 +1,12 @@
 import React from 'react';
-import {ConsoleDriverConfigRoute, NetworkRoute, QrReaderSettingRoute, QrViewRoute, UpdateUrlRoute} from "../routes";
+import {
+    ConsoleDriverConfigRoute,
+    GateSettingRoute,
+    NetworkRoute,
+    QrReaderSettingRoute,
+    QrViewRoute,
+    UpdateUrlRoute
+} from "../routes";
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import '../assets/styles/app.css';
@@ -13,6 +20,9 @@ const Home = () => {
         switch (type) {
             case "configuration":
                 navigate(QrReaderSettingRoute);
+                break;
+            case "gateReader":
+                navigate(GateSettingRoute);
                 break;
             case "network":
                 navigate(NetworkRoute);
@@ -63,11 +73,11 @@ const Home = () => {
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("network")}>
                     <span>تنظیمات شبکه</span>
-                    <span  className={`mt-2`}>Network Setting</span>
+                    <span className={`mt-2`}>Network Setting</span>
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("configuration")}>
                     <span>تنظیمات کاهنده</span>
-                    <span className={`mt-2`}>Config Qr Reader</span>
+                    <span className={`mt-2`}> Qr-Reader Config </span>
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("UPDATEURL")}>
                     <span> لینک بروزرسانی</span>
@@ -78,9 +88,12 @@ const Home = () => {
                     <span className={`mt-2`}>Show Debug</span>
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("DriverConsoleConfig")}>
-                    <span>کانفیگ کنسول راننده</span>
+                    <span>تنظیمات کنسول راننده</span>
                     <span className={`mt-2`}>DDS</span>
-
+                </div>
+                <div className="box-service" onClick={() => genarateQrCode("gateReader")}>
+                    <span>تنظیمات گیت</span>
+                    <span className={`mt-2`}>Gate Config</span>
                 </div>
             </div>
         </div>
