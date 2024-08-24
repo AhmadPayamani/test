@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {HomeRoute, QrViewRoute} from "../routes";
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
@@ -15,13 +15,11 @@ const QrReaderSetting = () => {
 
     const defaultQrReader = localStorage.getItem('defaultQrReader');
     const [formData, setFormData] = useState(defaultQrReader ? JSON.parse(defaultQrReader) : []);
-    const [selectedOption, setSelectedOption] = useState(1);
+    const [selectedOption, setSelectedOption] = useState(options[(formData.x)-1]);
 
-    useEffect(() => {
-        // console.log({formData});
-        setSelectedOption(options[(formData.x) - 1])
-
-    }, []);
+    // useEffect(() => {
+    //     setSelectedOption(]);
+    // }, []);
     const handleInputChange = (event) => {
         const {name, value} = event.target;
         let data = {...formData, [name]: value};
@@ -45,7 +43,6 @@ const QrReaderSetting = () => {
                 break;
             case "configuration":
                 setFormData(formData);
-                //console.log(data)
                 let data_string = JSON.stringify(formData);
                 let data_base64 = btoa(data_string);
                 navigate(QrViewRoute, {state: {qrCodeString: data_base64, qrName: "تنظیمات کاهنده QR"}});

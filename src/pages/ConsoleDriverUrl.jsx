@@ -4,37 +4,24 @@ import { HomeRoute, QrViewRoute } from "../routes";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-const ConsoleDriverConfig = () => {
+const ConsoleDriverUrl = () => {
     const navigate = useNavigate();
     let defaultData = {
-        action : "config",
+        action : "url",
         data:{
-            console_mac: null,
-            console_token: null
+            base_url: null,
         }
     }
-    const defaultDataDriverConsoleConfig = localStorage.getItem('defaultDataDriverConsoleConfig');
-    const [formData, setFormData] = useState(defaultDataDriverConsoleConfig ? JSON.parse(defaultDataDriverConsoleConfig) : defaultData);
+    const defaultDataDriverConsoleUrl = localStorage.getItem('defaultDataDriverConsoleUrl');
+    const [formData, setFormData] = useState(defaultDataDriverConsoleUrl ? JSON.parse(defaultDataDriverConsoleUrl) : defaultData);
 
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
+        const { value } = event.target;
         let data = { ...formData};
-
-        switch (name) {
-            case 'console_mac':
-                data.data.console_mac = value;
-                break
-            case 'console_token':
-                data.data.console_token = value;
-                break
-            default :
-                break
-
-        }
-       // console.log(data);
+        data.data.base_url = value;
         setFormData(data);
         let data_string = JSON.stringify(data);
-        localStorage.setItem("defaultDataDriverConsoleConfig", data_string);
+        localStorage.setItem("defaultDataDriverConsoleUrl", data_string);
     };
 
     const genarateQrCode = (type) => {
@@ -42,12 +29,12 @@ const ConsoleDriverConfig = () => {
             case "back":
                 navigate(HomeRoute);
                 break;
-            case "DriverConsoleConfig":
+            case "DriverConsoleUrl":
                 let data = { ...formData };
                 setFormData(data);
                 let data_string = JSON.stringify(data);
                 let data_base64 = btoa(data_string);
-                navigate(QrViewRoute, { state: { qrCodeString: data_base64,qrName:"تنظیمات کنسول راننده QR" } });
+                navigate(QrViewRoute, { state: { qrCodeString: data_base64,qrName:"تنظیم سرور کنسول راننده QR" } });
                 break;
 
             default:
@@ -64,43 +51,29 @@ const ConsoleDriverConfig = () => {
             </Helmet>
             <div className="body-style bg-[#1f2e39] ">
                 <div className="text-center pt-10 text-white ">
-                    <p className="font-bold text-lg pb-3">ساخت QR تنظیمات کنسول راننده </p>
+                    <p className="font-bold text-lg pb-3">ساخت QR تنظیم سرور کنسول راننده </p>
                 </div>
                 <div className="flex items-center justify-center pt-2">
 
                     <div className="mx-auto w-full max-w-[550px] px-1">
 
                         <div className="mb-5">
-                            <label className="block  text-sm font-bold mb-2 text-left text-white" htmlFor="mac">
-                                Mac
+                            <label className="block  text-sm font-bold mb-2 text-left text-white" htmlFor="base_url">
+                                Base Url
                             </label>
                             <input
                                 type="text"
-                                name="console_mac"
-                                id="mac"
-                                placeholder="912"
+                                name="base_url"
+                                id="base_url"
+                                placeholder="https://"
                                 value={formData?.data?.console_mac}
                                 onChange={handleInputChange}
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                         </div>
-                        <div className="mb-5">
-                            <label className="block  text-sm font-bold mb-2 text-left text-white" htmlFor="token">
-                                Token
-                            </label>
-                            <input
-                                type="text"
-                                name="console_token"
-                                id="token"
-                                value={formData?.data?.console_token}
-                                onChange={handleInputChange}
-                                placeholder="gAAAgrdgrdgdrgrdgdr"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                            />
-                        </div>
                         <div className="grid grid-cols-12 gap-2">
                             <button
-                                onClick={() => genarateQrCode("DriverConsoleConfig")}
+                                onClick={() => genarateQrCode("DriverConsoleUrl")}
                                 className="btn-custom btn-create"
                             >
                                 ساخت QR
@@ -120,4 +93,4 @@ const ConsoleDriverConfig = () => {
     );
 }
 
-export default ConsoleDriverConfig;
+export default ConsoleDriverUrl;

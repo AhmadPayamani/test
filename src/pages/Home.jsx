@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    ConsoleDriverConfigRoute,
+    ConsoleDriverConfigRoute, ConsoleDriverUrlRoute,
     GateSettingRoute,
     NetworkRoute,
     QrReaderSettingRoute,
@@ -29,6 +29,9 @@ const Home = () => {
                 break;
             case "DriverConsoleConfig":
                 navigate(ConsoleDriverConfigRoute);
+                break;
+            case "DriverConsoleUrl":
+                navigate(ConsoleDriverUrlRoute);
                 break;
             case "SHOWINFO": //ok
                 data = {
@@ -89,7 +92,10 @@ const Home = () => {
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("DriverConsoleConfig")}>
                     <span>تنظیمات کنسول راننده</span>
-                    <span className={`mt-2`}>DDS</span>
+                    <span className={`mt-2`}>DDS Config</span>
+                </div>  <div className="box-service" onClick={() => genarateQrCode("DriverConsoleUrl")}>
+                    <span>تنظیم سرور کنسول راننده</span>
+                    <span className={`mt-2`}>DDS Server Url</span>
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("gateReader")}>
                     <span>تنظیمات گیت</span>

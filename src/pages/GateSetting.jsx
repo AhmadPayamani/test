@@ -1,9 +1,8 @@
 import React from 'react';
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {HomeRoute, QrViewRoute} from "../routes";
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
-import Select from "react-select";
 
 
 const GateSetting = () => {
