@@ -10,15 +10,27 @@ const ConsoleDriverUrl = () => {
         action : "url",
         data:{
             base_url: null,
+            http_url: null,
         }
     }
     const defaultDataDriverConsoleUrl = localStorage.getItem('defaultDataDriverConsoleUrl');
     const [formData, setFormData] = useState(defaultDataDriverConsoleUrl ? JSON.parse(defaultDataDriverConsoleUrl) : defaultData);
 
     const handleInputChange = (event) => {
-        const { value } = event.target;
+        const { name, value } = event.target;
         let data = { ...formData};
-        data.data.base_url = value;
+
+        switch (name) {
+            case 'base_url':
+                data.data.base_url = value;
+                break
+            case 'http_url':
+                data.data.http_url = value;
+                break
+            default :
+                break
+
+        }
         setFormData(data);
         let data_string = JSON.stringify(data);
         localStorage.setItem("defaultDataDriverConsoleUrl", data_string);
@@ -59,14 +71,28 @@ const ConsoleDriverUrl = () => {
 
                         <div className="mb-5">
                             <label className="block  text-sm font-bold mb-2 text-left text-white" htmlFor="base_url">
-                                Base Url
+                                Socket Url
                             </label>
                             <input
                                 type="text"
                                 name="base_url"
                                 id="base_url"
+                                placeholder="wss://"
+                                value={formData?.data?.base_url}
+                                onChange={handleInputChange}
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                            />
+                        </div>
+                        <div className="mb-5">
+                            <label className="block  text-sm font-bold mb-2 text-left text-white" htmlFor="http_url">
+                                Http Url
+                            </label>
+                            <input
+                                type="text"
+                                name="http_url"
+                                id="http_url"
                                 placeholder="https://"
-                                value={formData?.data?.console_mac}
+                                value={formData?.data?.http_url}
                                 onChange={handleInputChange}
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />

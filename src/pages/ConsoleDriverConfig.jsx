@@ -31,7 +31,6 @@ const ConsoleDriverConfig = () => {
                 break
 
         }
-       // console.log(data);
         setFormData(data);
         let data_string = JSON.stringify(data);
         localStorage.setItem("defaultDataDriverConsoleConfig", data_string);
