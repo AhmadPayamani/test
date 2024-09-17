@@ -49,6 +49,14 @@ const Home = () => {
                 data_base64 = btoa(data_string);
                 navigate(QrViewRoute, {state: {qrCodeString: data_base64,qrName:"نمایش تنظیمات QR"}});
                 break;
+            case "ShowLastTickets":
+                data = {
+                    h: type,
+                };
+                data_string = JSON.stringify(data);
+                data_base64 = btoa(data_string);
+                navigate(QrViewRoute, {state: {qrCodeString: data_base64,qrName:"نمایش آخرین بلیت ها QR"}});
+                break;
             case "UPDATEURL":
                 navigate(UpdateUrlRoute);
                 break;
@@ -93,13 +101,18 @@ const Home = () => {
                 <div className="box-service" onClick={() => genarateQrCode("DriverConsoleConfig")}>
                     <span>تنظیمات کنسول راننده</span>
                     <span className={`mt-2`}>DDS Config</span>
-                </div>  <div className="box-service" onClick={() => genarateQrCode("DriverConsoleUrl")}>
+                </div>
+                <div className="box-service" onClick={() => genarateQrCode("DriverConsoleUrl")}>
                     <span>تنظیم سرور کنسول راننده</span>
                     <span className={`mt-2`}>DDS Server Url</span>
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("gateReader")}>
                     <span>تنظیمات گیت</span>
                     <span className={`mt-2`}>Gate Config</span>
+                </div>
+                <div className="box-service" onClick={() => genarateQrCode("ShowLastTickets")}>
+                    <span>نمایش آخرین بلیت ها</span>
+                    <span className={`mt-2`}>Show Last Tickets</span>
                 </div>
             </div>
         </div>
