@@ -2,6 +2,7 @@ import React from 'react';
 import {
     ConsoleDriverConfigRoute, ConsoleDriverUrlRoute,
     GateSettingRoute,
+    LicenceGeneratorRoute,
     NetworkRoute,
     QrReaderSettingRoute,
     QrViewRoute,
@@ -32,6 +33,9 @@ const Home = () => {
                 break;
             case "DriverConsoleUrl":
                 navigate(ConsoleDriverUrlRoute);
+                break;
+                case "LicenceGenerator":
+                navigate(LicenceGeneratorRoute);
                 break;
             case "SHOWINFO": //ok
                 data = {
@@ -113,6 +117,10 @@ const Home = () => {
                 <div className="box-service" onClick={() => genarateQrCode("ShowLastTickets")}>
                     <span>نمایش آخرین بلیت ها</span>
                     <span className={`mt-2`}>Show Last Tickets</span>
+                </div>
+                <div className="box-service" onClick={() => genarateQrCode("LicenceGenerator")}>
+                    <span>تولید لایسنس پلاک خوان</span>
+                    <span className={`mt-2`}>Licence Generator</span>
                 </div>
             </div>
         </div>

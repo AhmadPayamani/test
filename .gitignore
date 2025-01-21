@@ -4,7 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-
+*.zip
+.idea
+build
 # testing
 /coverage
 

@@ -5,6 +5,7 @@ import QrView from './pages/QrView';
 import {
     ConsoleDriverConfigRoute, ConsoleDriverUrlRoute,
     GateSettingRoute,
+    LicenceGeneratorRoute,
     NetworkRoute,
     QrReaderSettingRoute,
     QrViewRoute,
@@ -17,6 +18,7 @@ import QrReaderSetting from "./pages/QrReaderSetting";
 import ConsoleDriverConfig from "./pages/ConsoleDriverConfig";
 import GateSetting from "./pages/GateSetting";
 import ConsoleDriverUrl from "./pages/ConsoleDriverUrl";
+import LicenceGenerator from './pages/LicenceGenerator';
 function App() {
   return (
     <div className="App">
@@ -30,6 +32,7 @@ function App() {
            <Route path={GateSettingRoute} element={<GateSetting />} />
            <Route path={ConsoleDriverConfigRoute} element={<ConsoleDriverConfig />} />
            <Route path={ConsoleDriverUrlRoute} element={<ConsoleDriverUrl />} />
+           <Route path={LicenceGeneratorRoute} element={<LicenceGenerator />} />
        </Routes>
      </BrowserRouter>
    </div>
