@@ -9,7 +9,7 @@ const QrView = () => {
 
     const location = useLocation();
     const [description, setDescription] = useState(null);
-    const {qrCodeString,qrName} = location.state
+    const {qrCodeString,qrName,fileName} = location.state
     const backToHome = () => {
         navigate(HomeRoute);
     }
@@ -79,7 +79,12 @@ const QrView = () => {
 
             const downloadLink = document.createElement('a');
             downloadLink.href = pngUrl;
-            downloadLink.download = 'qrcode_with_text.png';
+            if(fileName){
+                downloadLink.download = fileName+'.png';
+            }else{
+                downloadLink.download = 'qrcode_with_text.png';
+            }
+
             document.body.appendChild(downloadLink);
             downloadLink.click();
             document.body.removeChild(downloadLink);

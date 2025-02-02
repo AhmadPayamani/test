@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    ConsoleDriverConfigRoute, ConsoleDriverUrlRoute,
+    ConsoleDriverConfigRoute, ConsoleDriverLoginRoute, ConsoleDriverUrlRoute,
     GateSettingRoute,
     LicenceGeneratorRoute,
     NetworkRoute,
@@ -34,7 +34,10 @@ const Home = () => {
             case "DriverConsoleUrl":
                 navigate(ConsoleDriverUrlRoute);
                 break;
-                case "LicenceGenerator":
+            case "DriverConsoleLogin":
+                navigate(ConsoleDriverLoginRoute);
+                break;
+            case "LicenceGenerator":
                 navigate(LicenceGeneratorRoute);
                 break;
             case "SHOWINFO": //ok
@@ -43,7 +46,7 @@ const Home = () => {
                 };
                 data_string = JSON.stringify(data);
                 data_base64 = btoa(data_string);
-                navigate(QrViewRoute, {state: {qrCodeString: data_base64,qrName:"نمایش اطلاعات QR"}});
+                navigate(QrViewRoute, {state: {qrCodeString: data_base64, qrName: "نمایش اطلاعات QR"}});
                 break;
             case "SHOWDEBUG":
                 data = {
@@ -51,7 +54,7 @@ const Home = () => {
                 };
                 data_string = JSON.stringify(data);
                 data_base64 = btoa(data_string);
-                navigate(QrViewRoute, {state: {qrCodeString: data_base64,qrName:"نمایش تنظیمات QR"}});
+                navigate(QrViewRoute, {state: {qrCodeString: data_base64, qrName: "نمایش تنظیمات QR"}});
                 break;
             case "ShowLastTickets":
                 data = {
@@ -59,7 +62,7 @@ const Home = () => {
                 };
                 data_string = JSON.stringify(data);
                 data_base64 = btoa(data_string);
-                navigate(QrViewRoute, {state: {qrCodeString: data_base64,qrName:"نمایش آخرین بلیت ها QR"}});
+                navigate(QrViewRoute, {state: {qrCodeString: data_base64, qrName: "نمایش آخرین بلیت ها QR"}});
                 break;
             case "UPDATEURL":
                 navigate(UpdateUrlRoute);
@@ -109,6 +112,10 @@ const Home = () => {
                 <div className="box-service" onClick={() => genarateQrCode("DriverConsoleUrl")}>
                     <span>تنظیم سرور کنسول راننده</span>
                     <span className={`mt-2`}>DDS Server Url</span>
+                </div>
+                <div className="box-service" onClick={() => genarateQrCode("DriverConsoleLogin")}>
+                    <span>ورود به کنسول راننده</span>
+                    <span className={`mt-2`}>DDS Login</span>
                 </div>
                 <div className="box-service" onClick={() => genarateQrCode("gateReader")}>
                     <span>تنظیمات گیت</span>

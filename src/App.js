@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import QrView from './pages/QrView';
 import {
-    ConsoleDriverConfigRoute, ConsoleDriverUrlRoute,
+    ConsoleDriverConfigRoute, ConsoleDriverLoginRoute, ConsoleDriverUrlRoute,
     GateSettingRoute,
     LicenceGeneratorRoute,
     NetworkRoute,
@@ -19,6 +19,7 @@ import ConsoleDriverConfig from "./pages/ConsoleDriverConfig";
 import GateSetting from "./pages/GateSetting";
 import ConsoleDriverUrl from "./pages/ConsoleDriverUrl";
 import LicenceGenerator from './pages/LicenceGenerator';
+import ConsoleDriverLogin from "./pages/ConsoleDriverLogin";
 function App() {
   return (
     <div className="App">
@@ -32,6 +33,7 @@ function App() {
            <Route path={GateSettingRoute} element={<GateSetting />} />
            <Route path={ConsoleDriverConfigRoute} element={<ConsoleDriverConfig />} />
            <Route path={ConsoleDriverUrlRoute} element={<ConsoleDriverUrl />} />
+           <Route path={ConsoleDriverLoginRoute} element={<ConsoleDriverLogin />} />
            <Route path={LicenceGeneratorRoute} element={<LicenceGenerator />} />
        </Routes>
      </BrowserRouter>

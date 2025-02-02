@@ -9,7 +9,8 @@ const LicenceGenerator = () => {
     const navigate = useNavigate();
     const defaultData = {
       data: {
-        harware_serial_number: null,
+        name: null,
+        hardware_serial_number: null,
         serial_number: null,
         expire_date: null,
         support_date: null,
@@ -34,8 +35,11 @@ const LicenceGenerator = () => {
       let data = { ...formData };
   
       switch (name) {
-        case "harware_serial_number":
-          data.data.harware_serial_number = value;
+          case "name":
+              data.data.name = value;
+              break;
+        case "hardware_serial_number":
+          data.data.hardware_serial_number = value;
           break;
         case "serial_number":
           data.data.serial_number = value;
@@ -62,8 +66,8 @@ const LicenceGenerator = () => {
         case "LicenceGenerator":
           let data = { ...formData };
           setFormData(data);
-          let key = generateKey(data.data.serial_number, data.data.harware_serial_number);
-          let newData = `{"expire_date":"${data.data.expire_date}","support_date":"${data.data.support_date}"}`;
+          let key = generateKey(data.data.serial_number, data.data.hardware_serial_number);
+          let newData = `{"name":"${data.data.name}","expire_date":"${data.data.expire_date}","support_date":"${data.data.support_date}"}`;
 
           let hash = encrypt(newData, key);
 
@@ -130,21 +134,38 @@ const LicenceGenerator = () => {
 
                     <div className="mx-auto w-full max-w-[550px] px-1">
                         <div className="mb-5">
-                            <label className="block  text-sm font-bold mb-2 text-left text-white" htmlFor="harware_serial_number">
-                                HardWare Serial
+                            <label className="block  text-sm font-bold mb-2 text-left text-white"
+                                   htmlFor="name">
+                               Name
                             </label>
                             <input
                                 type="text"
-                                name="harware_serial_number"
-                                id="harware_serial_number"
-                                placeholder="123456789"
-                                value={formData?.data?.harware_serial_number}
+                                name="name"
+                                id="name"
+                                placeholder="لایسنس 2 ماهه - دمو با پشتیبانی یکساله"
+                                value={formData?.data?.name}
                                 onChange={handleInputChange}
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                         </div>
                         <div className="mb-5">
-                            <label className="block  text-sm font-bold mb-2 text-left text-white" htmlFor="serial_number">
+                            <label className="block  text-sm font-bold mb-2 text-left text-white"
+                                   htmlFor="hardware_serial_number">
+                                HardWare Serial
+                            </label>
+                            <input
+                                type="text"
+                                name="hardware_serial_number"
+                                id="hardware_serial_number"
+                                placeholder="123456789"
+                                value={formData?.data?.hardware_serial_number}
+                                onChange={handleInputChange}
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                            />
+                        </div>
+                        <div className="mb-5">
+                            <label className="block  text-sm font-bold mb-2 text-left text-white"
+                                   htmlFor="serial_number">
                                 SoftWare Serial
                             </label>
                             <input
@@ -172,7 +193,8 @@ const LicenceGenerator = () => {
                             />
                         </div>
                         <div className="mb-5">
-                            <label className="block  text-sm font-bold mb-2 text-left text-white" htmlFor="support_date">
+                            <label className="block  text-sm font-bold mb-2 text-left text-white"
+                                   htmlFor="support_date">
                                 Support Date
                             </label>
                             <input
