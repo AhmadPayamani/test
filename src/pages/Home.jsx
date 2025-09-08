@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-    ConsoleDriverConfigRoute, ConsoleDriverLoginRoute, ConsoleDriverUrlRoute,
+    ConsoleDriverConfigRoute, ConsoleDriverLoginRoute, ConsoleDriverSmsFormRoute, ConsoleDriverUrlRoute,
     GateSettingRoute,
     LicenceGeneratorRoute,
     NetworkRoute,
     QrReaderSettingRoute,
     QrViewRoute,
     UpdateUrlRoute
-} from "../routes";
+} from "../Routes";
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import '../assets/styles/app.css';
@@ -15,7 +15,7 @@ import '../assets/styles/app.css';
 const Home = () => {
     const navigate = useNavigate();
 
-    const genarateQrCode = (type) => {
+    const generateQrCode = (type) => {
         // console.log({ type });
         let data, data_string, data_base64;
         switch (type) {
@@ -67,6 +67,9 @@ const Home = () => {
             case "UPDATEURL":
                 navigate(UpdateUrlRoute);
                 break;
+            case "DriverConsoleSmsForm":
+                navigate(ConsoleDriverSmsFormRoute);
+                break;
 
             default:
 
@@ -85,47 +88,54 @@ const Home = () => {
                 <p className="font-bold text-lg">نوع qr مورد نیاز خود را انتخاب کنید</p>
             </div>
             <div className="service-list">
-                <div className="box-service" onClick={() => genarateQrCode("SHOWINFO")}>
-                    <span> نمایش اطلاعات</span>
+                <div className="box-service" onClick={() => generateQrCode("SHOWINFO")}>
+                    <span>نمایش اطلاعات کاهنده</span>
                     <span className={`mt-2`}>Show Info</span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("network")}>
-                    <span>تنظیمات شبکه</span>
+                <div className="box-service" onClick={() => generateQrCode("network")}>
+                    <span>تنظیمات شبکه کاهنده</span>
                     <span className={`mt-2`}>Network Setting</span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("configuration")}>
+                <div className="box-service" onClick={() => generateQrCode("configuration")}>
                     <span>تنظیمات کاهنده</span>
                     <span className={`mt-2`}> Qr-Reader Config </span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("UPDATEURL")}>
-                    <span> لینک بروزرسانی</span>
+                <div className="box-service" onClick={() => generateQrCode("ShowLastTickets")}>
+                    <span>نمایش آخرین بلیت های کاهنده</span>
+                    <span className={`mt-2`}>Show Last Tickets</span>
+                </div>
+
+                <div className="box-service" onClick={() => generateQrCode("UPDATEURL")}>
+                    <span>لینک بروزرسانی کاهنده</span>
                     <span className={`mt-2`}>Update Url</span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("SHOWDEBUG")}>
-                    <span>نمایش تنظیمات</span>
+                <div className="box-service" onClick={() => generateQrCode("SHOWDEBUG")}>
+                    <span>نمایش تنظیمات کاهنده</span>
                     <span className={`mt-2`}>Show Debug</span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("DriverConsoleConfig")}>
+                <div className="box-service" onClick={() => generateQrCode("gateReader")}>
+                    <span>تنظیمات گیت کاهنده</span>
+                    <span className={`mt-2`}>Gate Config</span>
+                </div>
+
+                <div className="box-service" onClick={() => generateQrCode("DriverConsoleConfig")}>
                     <span>تنظیمات کنسول راننده</span>
                     <span className={`mt-2`}>DDS Config</span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("DriverConsoleUrl")}>
+                <div className="box-service" onClick={() => generateQrCode("DriverConsoleUrl")}>
                     <span>تنظیم سرور کنسول راننده</span>
                     <span className={`mt-2`}>DDS Server Url</span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("DriverConsoleLogin")}>
+                <div className="box-service" onClick={() => generateQrCode("DriverConsoleLogin")}>
                     <span>ورود به کنسول راننده</span>
                     <span className={`mt-2`}>DDS Login</span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("gateReader")}>
-                    <span>تنظیمات گیت</span>
-                    <span className={`mt-2`}>Gate Config</span>
+                <div className="box-service" onClick={() => generateQrCode("DriverConsoleSmsForm")}>
+                    <span>ارسال پیامک با کنسول راننده</span>
+                    <span className={`mt-2`}>DDS SMS Send</span>
                 </div>
-                <div className="box-service" onClick={() => genarateQrCode("ShowLastTickets")}>
-                    <span>نمایش آخرین بلیت ها</span>
-                    <span className={`mt-2`}>Show Last Tickets</span>
-                </div>
-                <div className="box-service" onClick={() => genarateQrCode("LicenceGenerator")}>
+
+                <div className="box-service" onClick={() => generateQrCode("LicenceGenerator")}>
                     <span>تولید لایسنس پلاک خوان</span>
                     <span className={`mt-2`}>Licence Generator</span>
                 </div>

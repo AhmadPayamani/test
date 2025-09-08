@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {HomeRoute} from '../routes';
+import {HomeRoute} from '../Routes';
 import {Helmet} from 'react-helmet';
 import QRCode from "qrcode.react";
 

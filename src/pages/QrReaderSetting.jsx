@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState} from "react";
-import {HomeRoute, QrViewRoute} from "../routes";
+import {HomeRoute, QrViewRoute} from "../Routes";
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import Select from "react-select";
@@ -35,7 +35,7 @@ const QrReaderSetting = () => {
         let data_string = JSON.stringify(data);
         localStorage.setItem("defaultQrReader", data_string);
     };
-    const genarateQrCode = (type) => {
+    const generateQrCode = (type) => {
         //console.log({type});
         switch (type) {
             case "back":
@@ -67,7 +67,7 @@ const QrReaderSetting = () => {
                 <div className="flex items-center justify-center pt-2">
 
                     <div className="mx-auto w-full max-w-[550px] px-1">
-                    <div className="mb-5" dir='ltr'>
+                        <div className="mb-5" dir='ltr'>
                             <label className="block text-white text-sm font-bold mb-2 text-left" htmlFor="x">
                                 Door
                             </label>
@@ -79,6 +79,20 @@ const QrReaderSetting = () => {
                             />
                         </div>
                         <div className="mb-5">
+                            <label className="block text-white text-sm font-bold mb-2 text-left" htmlFor="b">
+                                Bus
+                            </label>
+                            <input
+                                type="text"
+                                name="b"
+                                id="b"
+                                placeholder="---"
+                                value={formData.b}
+                                onChange={handleInputChange}
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                            />
+                        </div>
+                        <div className="mb-5">
                             <label className="block text-white text-sm font-bold mb-2 text-left" htmlFor="h">
                                 Host
                             </label>
@@ -86,7 +100,7 @@ const QrReaderSetting = () => {
                                 type="text"
                                 name="h"
                                 id="h"
-                                placeholder="gfwss://my.yazd.ir"
+                                placeholder="wss://my.pay.ir"
                                 value={formData.h}
                                 onChange={handleInputChange}
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -130,7 +144,7 @@ const QrReaderSetting = () => {
                                 id="p"
                                 value={formData.p}
                                 onChange={handleInputChange}
-                                placeholder="443"
+                                placeholder="8088"
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                         </div>
@@ -144,7 +158,7 @@ const QrReaderSetting = () => {
                                 id="t"
                                 value={formData.t}
                                 onChange={handleInputChange}
-                                placeholder="token"
+                                placeholder="1234"
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                         </div>
@@ -158,20 +172,20 @@ const QrReaderSetting = () => {
                                 id="d"
                                 value={formData.d}
                                 onChange={handleInputChange}
-                                placeholder="device id"
+                                placeholder="--------"
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                         </div>
-                      
+
                         <div className="grid grid-cols-12 gap-2">
                             <button
-                                onClick={() => genarateQrCode("configuration")}
+                                onClick={() => generateQrCode("configuration")}
                                 className="btn-custom btn-create"
                             >
                                 ساخت QR
                             </button>
                             <button
-                                onClick={() => genarateQrCode("back")}
+                                onClick={() => generateQrCode("back")}
                                 className="btn-custom btn-back"
                             >
                                 برگشت

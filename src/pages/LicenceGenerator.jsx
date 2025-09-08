@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from "react";
-import { HomeRoute } from "../routes";
+import { HomeRoute } from "../Routes";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import CryptoJS from 'crypto-js';
-import { Bounce, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 const LicenceGenerator = () => {
     const navigate = useNavigate();
     const defaultData = {

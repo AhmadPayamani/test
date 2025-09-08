@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import { HomeRoute, QrViewRoute } from "../routes";
+import { HomeRoute, QrViewRoute } from "../Routes";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -32,7 +32,7 @@ const ConsoleDriverLogin = () => {
         localStorage.setItem("defaultDataDriverConsoleLogin", data_string);
     };
 
-    const genarateQrCode = (type) => {
+    const generateQrCode = (type) => {
         switch (type) {
             case "back":
                 navigate(HomeRoute);
@@ -81,13 +81,13 @@ const ConsoleDriverLogin = () => {
                         </div>
                         <div className="grid grid-cols-12 gap-2">
                             <button
-                                onClick={() => genarateQrCode("DriverConsoleLogin")}
+                                onClick={() => generateQrCode("DriverConsoleLogin")}
                                 className="btn-custom btn-create"
                             >
                                 ساخت QR
                             </button>
                             <button
-                                onClick={() => genarateQrCode("back")}
+                                onClick={() => generateQrCode("back")}
                                 className="btn-custom btn-back"
                             >
                                 برگشت

@@ -1,6 +1,6 @@
 import React from 'react';
 import {  useState } from "react";
-import { HomeRoute, QrViewRoute } from "../routes";
+import { HomeRoute, QrViewRoute } from "../Routes";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -21,7 +21,7 @@ const UpdateUrl = () => {
         localStorage.setItem("defaultDataUpdateUrl", data_string);
     };
 
-    const genarateQrCode = (type) => {
+    const generateQrCode = (type) => {
         //console.log({ type });
         switch (type) {
             case "back":
@@ -31,6 +31,7 @@ const UpdateUrl = () => {
                 let data = { ...formData, h: type };
                 setFormData(data);
                 let data_string = JSON.stringify(data);
+                console.log(data_string)
                 let data_base64 = btoa(data_string);
                 navigate(QrViewRoute, { state: { qrCodeString: data_base64 ,qrName:" لینک بروزرسانی QR  "} });
                 break;
@@ -72,13 +73,13 @@ const UpdateUrl = () => {
                     </div>
                     <div className="grid grid-cols-12 gap-2">
                         <button
-                            onClick={() => genarateQrCode("UPDATEURL")}
+                            onClick={() => generateQrCode("UPDATEURL")}
                             className="btn-custom btn-create"
                         >
                             ساخت QR
                         </button>
                         <button
-                            onClick={() => genarateQrCode("back")}
+                            onClick={() => generateQrCode("back")}
                             className="btn-custom btn-back"
                         >
                             برگشت

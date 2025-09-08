@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import { HomeRoute, QrViewRoute } from "../routes";
+import { HomeRoute, QrViewRoute } from "../Routes";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -21,7 +21,7 @@ const Network = () => {
         localStorage.setItem("defaultDataNetwork", data_string);
     };
 
-    const genarateQrCode = (type) => {
+    const generateQrCode = (type) => {
         //console.log({ type });
         switch (type) {
             case "back":
@@ -128,13 +128,13 @@ const Network = () => {
                         </div>
                         <div className="grid grid-cols-12 gap-2">
                             <button
-                                onClick={() => genarateQrCode("network")}
+                                onClick={() => generateQrCode("network")}
                                 className="btn-custom btn-create"
                             >
                                 ساخت QR
                             </button>
                             <button
-                                onClick={() => genarateQrCode("back")}
+                                onClick={() => generateQrCode("back")}
                                 className="btn-custom btn-back"
                             >
                                 برگشت
